@@ -5,12 +5,12 @@
 
     <a href="https://github.com/Xolof/me-app-jsramverk">Repo on GitHub</a>
 
-    <h1>README.md för "me-app"</h1>
+    <h1>README.md for "me-app"</h1>
 
-    <h2>Installera nödvändiga NPM-moduler med</h2>
+    <h2>Install the necessary NPM modules</h2>
     <span class="code">npm install</span>
 
-    <h2>Starta applikationen med</h2>
+    <h2>Start the application</h2>
     <span class="code">npm run serve</span>
 
   </div>
