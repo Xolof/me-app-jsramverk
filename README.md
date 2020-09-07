@@ -1,11 +1,11 @@
 # me-app
 
-## Installera nödvändiga NPM-moduler med:
+## Install the necessary NPM modules:
 ```
 npm install
 ```
 
-### Starta applikationen med:
+### Start the application:
 ```
 npm run serve
 ```
