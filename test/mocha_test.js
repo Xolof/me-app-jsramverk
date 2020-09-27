@@ -8,6 +8,8 @@ const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
 
+const firefox = require('selenium-webdriver/firefox');
+
 let browser;
 
 // Test suite
@@ -15,8 +17,20 @@ test.describe("me-app", function() {
 
     test.beforeEach(function(done) {
         this.timeout(20000);
-        browser = new webdriver.Builder().
-        withCapabilities(webdriver.Capabilities.firefox()).build();
+
+        // Alternative 1.
+        // browser = new webdriver.Builder().
+        // withCapabilities(webdriver.Capabilities.firefox()).build();
+
+
+        // Alternative 2.
+        var options = new firefox.Options();
+        options.addArguments("-headless");
+
+        browser = new webdriver.Builder()
+            .forBrowser('firefox')
+            .setFirefoxOptions(options)
+            .build();
 
         browser.get("http://localhost:8080");
         done();
