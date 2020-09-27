@@ -60,13 +60,12 @@ test.describe("me-app", function() {
     }
 
     // Test case
-    test.it("Test index", function() {
-    // test.it("Test index", function() {
+    // it eller test.it
+    it("Test index", function(done) {
         this.timeout(20000);
 
-        return browser.getTitle().then(function(title) {
+        browser.getTitle().then(function(title) {
             assert.equal(title, "me-app");
-            // done();
         })
         // .then(done, done);
         // .catch(done);
@@ -75,7 +74,7 @@ test.describe("me-app", function() {
         //
         // browser.findElement(By.className("me-img"));
 
-        // done();
+        done();
     });
 
     // test.it("Test go to Redovisning", function(done) {
