@@ -15,6 +15,7 @@ git:
 
 before_script:
     - npm install
+    - npm run serve
 
 script:
     - npm test
