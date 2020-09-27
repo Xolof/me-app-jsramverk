@@ -7,17 +7,16 @@ const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
-const until = webdriver.until;
-const Condition = webdriver.Condition;
 
 let browser;
 
 // Test suite
 test.describe("me-app", function() {
+
     test.beforeEach(function(done) {
         this.timeout(20000);
         browser = new webdriver.Builder().
-            withCapabilities(webdriver.Capabilities.firefox()).build();
+        withCapabilities(webdriver.Capabilities.firefox()).build();
 
         browser.get("http://localhost:8080");
         done();
@@ -51,19 +50,19 @@ test.describe("me-app", function() {
     //     });
     // }
 
-    // // Test case
-    // test.it("Test index", function(done) {
-    //
-    //     browser.getTitle().then(function(title) {
-    //         assert.equal(title, "me-app");
-    //     });
-    //
-    //     matchUrl("/#/");
-    //
-    //     browser.findElement(By.className("me-img"));
-    //
-    //     done();
-    // });
+    // Test case
+    test.it("Test index", function(done) {
+
+        browser.getTitle().then(function(title) {
+            assert.equal(title, "me-app");
+        });
+
+        matchUrl("/#/");
+
+        browser.findElement(By.className("me-img"));
+
+        done();
+    });
 
     test.it("Test go to Redovisning", function(done) {
         goToNavLink("Redovisning");
