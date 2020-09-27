@@ -41,29 +41,29 @@ test.describe("me-app", function() {
         });
     }
 
-    function assertH1(target) {
-        browser
-        .findElement(By.css("h1"))
-        .then(function(element) {
-            element.getText().then(function(text) {
-                assert.equal(text, target);
-            });
-        });
-    }
+    // function assertH1(target) {
+    //     browser
+    //     .findElement(By.css("h1"))
+    //     .then(function(element) {
+    //         element.getText().then(function(text) {
+    //             assert.equal(text, target);
+    //         });
+    //     });
+    // }
 
-    // Test case
-    test.it("Test index", function(done) {
-
-        browser.getTitle().then(function(title) {
-            assert.equal(title, "me-app");
-        });
-
-        matchUrl("/#/");
-
-        browser.findElement(By.className("me-img"));
-
-        done();
-    });
+    // // Test case
+    // test.it("Test index", function(done) {
+    //
+    //     browser.getTitle().then(function(title) {
+    //         assert.equal(title, "me-app");
+    //     });
+    //
+    //     matchUrl("/#/");
+    //
+    //     browser.findElement(By.className("me-img"));
+    //
+    //     done();
+    // });
 
     test.it("Test go to Redovisning", function(done) {
         goToNavLink("Redovisning");
