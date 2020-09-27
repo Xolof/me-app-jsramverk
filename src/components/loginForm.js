@@ -1,5 +1,7 @@
 import Vue from 'vue';
-import eventBus from "../modules/EventBus"
+import eventBus from "../modules/EventBus";
+
+import api from "../main.js";
 
 const registerForm = Vue.component("login-form", {
     template: `
@@ -21,7 +23,7 @@ const registerForm = Vue.component("login-form", {
         </p>
 
         <p>
-            <input type="submit" value="Logga in">
+            <input type="submit" value="Logga in" id="login">
         </p>
     </form>
     `,
@@ -30,7 +32,7 @@ const registerForm = Vue.component("login-form", {
             email: null,
             password: null,
             errors: [],
-        }
+        };
     },
     methods: {
         onSubmit() {
@@ -38,38 +40,39 @@ const registerForm = Vue.component("login-form", {
                 let userData = {
                     email: this.email,
                     password: this.password,
-                }
+                };
                 // POST with fetch API
-                fetch("http://localhost:1337/login", {
+
+                fetch(api + "/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(userData)
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.data) {
-                        if (data.data.status === 200) {
-                            eventBus.$emit("log-in", { user: userData.email, token: data.data.token });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.data) {
+                            if (data.data.status === 200) {
+                                eventBus.$emit("log-in", { user: userData.email, token: data.data.token });
+                            }
                         }
-                    }
 
-                    if (data.errors) {
-                        this.errors.push("Inloggningen misslyckades.");
-                    }
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
+                        if (data.errors) {
+                            this.errors.push("Inloggningen misslyckades.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
 
                 this.email = null;
                 this.password = null;
                 this.errors = [];
             } else {
                 this.errors = [];
-                if(!this.email) this.errors.push("Fyll i e-post.");
-                if(!this.password) this.errors.push("Fyll i lösenord.");
+                if (!this.email) {this.errors.push("Fyll i e-post.");}
+                if (!this.password) {this.errors.push("Fyll i lösenord.");}
             }
         },
         focusInput() {
@@ -85,4 +88,4 @@ export default {
     components: {
         "register-form": registerForm
     }
-}
+};

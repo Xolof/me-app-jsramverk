@@ -1,9 +1,9 @@
 <template>
-  <div class="login">
+    <div class="login">
 
-    <h1>Logga in</h1>
+        <h1>Logga in</h1>
 
-    <login-form />
+        <login-form />
 
-  </div>
-</template>
+    </div>
+</template>;

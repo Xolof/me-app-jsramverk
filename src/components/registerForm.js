@@ -1,11 +1,13 @@
-import Vue from 'vue'
+import Vue from 'vue';
+
+import api from "../main.js";
 
 const registerForm = Vue.component("register-form", {
     template: `
     <form class="register-form" @submit.prevent="onSubmit">
-        <p v-if="errors.length" class="error-message">
+        <p v-if="errors.length" class="error-message" id="error-message">
             <ul>
-                <li v-for="error in errors">{{ error }}</li>
+                <li v-for="error in errors" class="error">{{ error }}</li>
             </ul>
         </p>
 
@@ -26,7 +28,7 @@ const registerForm = Vue.component("register-form", {
         </p>
 
         <p>
-            <input type="submit" value="Registrera">
+            <input type="submit" value="Registrera" name="register">
         </p>
     </form>
     `,
@@ -36,7 +38,7 @@ const registerForm = Vue.component("register-form", {
             password: "",
             errors: [],
             messages: [],
-        }
+        };
     },
     methods: {
         validate() {
@@ -44,13 +46,14 @@ const registerForm = Vue.component("register-form", {
 
             // valid email
             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
             if (!re.test(this.email)) {
                 this.errors.push("Fyll i en giltig e-post.");
             }
 
             // valid password
-            if(this.password.length < 5) {
-                console.log("fyll i lösenord om minst 5 tecken.")
+            if (this.password.length < 5) {
+                console.log("fyll i lösenord om minst 5 tecken.");
                 this.errors.push("Fyll i ett lösenord om minst 5 tecken.");
             }
 
@@ -65,30 +68,31 @@ const registerForm = Vue.component("register-form", {
                 let userData = {
                     email: this.email,
                     password: this.password,
-                }
+                };
                 // POST with fetch API
-                fetch("http://localhost:1337/register", {
+
+                fetch(api + "/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(userData)
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.data) {
-                        if (data.data.status === 201) {
-                            this.messages.push("Användaren har registrerats.");
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.data) {
+                            if (data.data.status === 201) {
+                                this.messages.push("Användaren har registrerats.");
+                            }
                         }
-                    }
 
-                    if (data.errors) {
-                        this.errors.push("Registreringen misslyckades.");
-                    }
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
+                        if (data.errors) {
+                            this.errors.push("Registreringen misslyckades.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
 
                 this.email = "";
                 this.password = "";
@@ -109,4 +113,4 @@ export default {
     components: {
         "register-form": registerForm
     }
-}
+};

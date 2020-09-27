@@ -1,5 +1,6 @@
 import Vue from 'vue';
 // import eventBus from "../modules/EventBus";
+import api from "../main.js";
 
 const reports = Vue.component("reports", {
     template: `
@@ -66,23 +67,24 @@ const reports = Vue.component("reports", {
     `,
     methods: {
         getReport(week) {
-            fetch("http://localhost:1337/reports/week/" + week)
-            .then(res => res.json())
-            .then(data => {
-                if (data.data.report) {
-                    this.reportExists = true;
+            fetch(api + "/reports/week/" + week)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.data.report) {
+                        this.reportExists = true;
+                        this.reportId = week;
+                        this.switchToRead();
+                        return this.currentReport = data.data.report.report;
+                    }
+                    this.currentReport = "Här kommer snart en redovisningstext.";
+                    this.reportExists = false;
                     this.reportId = week;
                     this.switchToRead();
-                    return this.currentReport = data.data.report.report;
-                }
-                this.currentReport = "Här kommer snart en redovisningstext.";
-                this.reportExists = false;
-                this.reportId = week;
-                this.switchToRead();
-            })
+                });
         },
         addReport() {
             const requestHeaders = new Headers();
+
             requestHeaders.append("Content-Type", "application/json");
             requestHeaders.append("x-access-token", this.$root.$data.token);
 
@@ -90,21 +92,23 @@ const reports = Vue.component("reports", {
                 week: this.reportId,
                 text: this.newText
             });
-            fetch("http://localhost:1337/reports", {
+
+            fetch(api + "/reports", {
                 method: "POST",
                 headers: requestHeaders,
                 body: myData
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                this.currentReport = this.newText;
-                this.reportExists = true;
-                this.switchToRead();
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    this.currentReport = this.newText;
+                    this.reportExists = true;
+                    this.switchToRead();
+                });
         },
         editReport() {
             const requestHeaders = new Headers();
+
             requestHeaders.append("Content-Type", "application/json");
             requestHeaders.append("x-access-token", this.$root.$data.token);
 
@@ -112,16 +116,17 @@ const reports = Vue.component("reports", {
                 week: this.reportId,
                 text: this.newText
             });
-            fetch("http://localhost:1337/reports", {
+
+            fetch(api + "/reports", {
                 method: "PUT",
                 headers: requestHeaders,
                 body: myData
             })
-            .then(() => {
-                this.currentReport = this.newText;
-                this.reportExists = true;
-                this.switchToRead();
-            })
+                .then(() => {
+                    this.currentReport = this.newText;
+                    this.reportExists = true;
+                    this.switchToRead();
+                });
         },
         switchToRead() {
             this.mode = "read";
@@ -143,7 +148,7 @@ const reports = Vue.component("reports", {
             reportId: 1,
             mode: "read",
             newText: "",
-        }
+        };
     },
     mounted() {
         this.getReport(1);
@@ -154,4 +159,4 @@ export default {
     components: {
         "reports": reports
     }
-}
+};

@@ -22,4 +22,4 @@ export default {
     components: {
         "status-bar": statusBar
     }
-}
+};

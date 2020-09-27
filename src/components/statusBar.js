@@ -8,11 +8,11 @@ const statusBar = Vue.component("status-bar", {
     },
     computed: {
         loggedInMsg() {
-            return this.loggedIn ? "Inloggad som " + this.$root.$data.user : "Ej inloggad"
+            return this.loggedIn ? "Inloggad som " + this.$root.$data.user : "Ej inloggad";
         }
     },
     template: `
-        <p class="status-bar" v-bind:class="{ active : this.loggedIn }">{{ loggedInMsg }}</p>
+        <p class="status-bar" id="status-bar" v-bind:class="{ active : this.loggedIn }">{{ loggedInMsg }}</p>
     `
 });
 
@@ -20,4 +20,4 @@ export default {
     components: {
         "status-bar": statusBar
     }
-}
+};

@@ -1,9 +1,9 @@
 <template>
-  <div class="register">
+    <div class="register">
 
-    <h1>Registrera användare</h1>
+        <h1>Registrera användare</h1>
 
-    <register-form />
+        <register-form />
 
-  </div>
-</template>
+    </div>
+</template>;
