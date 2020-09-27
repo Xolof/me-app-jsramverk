@@ -18,17 +18,11 @@ test.describe("me-app", function() {
     test.beforeEach(function(done) {
         this.timeout(20000);
 
-        // Alternative 1.
-        // browser = new webdriver.Builder().
-        // withCapabilities(webdriver.Capabilities.firefox()).build();
-
-        // Alternative 2.
-        var options = new firefox.Options();
-        options.addArguments("-headless");
+        const screen = { width: 1920, height: 1080 };
 
         browser = new webdriver.Builder()
             .forBrowser('firefox')
-            .setFirefoxOptions(options)
+            .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
             .build();
 
         browser.get("http://localhost:8080");
