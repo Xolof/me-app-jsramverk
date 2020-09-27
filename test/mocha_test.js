@@ -27,7 +27,7 @@ test.describe("me-app", function() {
             .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
             .build();
 
-        browser.get("http://localhost:8080");
+        // browser.get("http://localhost:8080");
         done();
     });
 
@@ -61,21 +61,21 @@ test.describe("me-app", function() {
 
     // Test case
     // it eller test.it
-    it("Test index", function(done) {
-        this.timeout(20000);
-
-        browser.getTitle().then(function(title) {
-            assert.equal(title, "me-app");
-        })
-        // .then(done, done);
-        // .catch(done);
-
-        // matchUrl("/#/");
-        //
-        // browser.findElement(By.className("me-img"));
-
-        done();
-    });
+    // it("Test index", function(done) {
+    //     this.timeout(20000);
+    //
+    //     browser.getTitle().then(function(title) {
+    //         assert.equal(title, "me-app");
+    //     })
+    //     // .then(done, done);
+    //     // .catch(done);
+    //
+    //     // matchUrl("/#/");
+    //     //
+    //     // browser.findElement(By.className("me-img"));
+    //
+    //     done();
+    // });
 
     // test.it("Test go to Redovisning", function(done) {
     //     goToNavLink("Redovisning");
