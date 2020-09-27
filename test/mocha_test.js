@@ -18,23 +18,17 @@ test.describe("me-app", function() {
     this.timeout(20000);
 
     test.beforeEach(function(done) {
-        try {
+        this.timeout(20000);
 
-            this.timeout(20000);
+        const screen = { width: 1920, height: 1080 };
 
-            const screen = { width: 1920, height: 1080 };
+        browser = new webdriver.Builder()
+            .forBrowser('firefox')
+            .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
+            .build();
 
-            browser = new webdriver.Builder()
-                .forBrowser('firefox')
-                .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
-                .build();
-
-            browser.get("http://localhost:8080");
-            done();
-
-        } catch (error) {
-            console.error(error)
-        }
+        browser.get("http://localhost:8080");
+        done();
     });
 
     test.afterEach(function(done) {
@@ -67,22 +61,18 @@ test.describe("me-app", function() {
 
     // Test case
     test.it("Test index", function(done) {
+        this.timeout(20000);
 
-        try {
-            browser.getTitle().then(function(title) {
-                assert.equal(title, "me-app");
-                done();
-            }).catch(done);
-
+        browser.getTitle().then(function(title) {
+            assert.equal(title, "me-app");
             done();
-
-        } catch (error) {
-            console.error(error);
-        }
+        }).catch(done);
 
         // matchUrl("/#/");
         //
         // browser.findElement(By.className("me-img"));
+
+        done();
     });
 
     // test.it("Test go to Redovisning", function(done) {
