@@ -60,12 +60,13 @@ test.describe("me-app", function() {
     }
 
     // Test case
-    test.it("Test index", function(done) {
+    test.it("Test index", function() {
+    // test.it("Test index", function() {
         this.timeout(20000);
 
         return browser.getTitle().then(function(title) {
             assert.equal(title, "me-app");
-            done();
+            // done();
         })
         // .then(done, done);
         // .catch(done);
