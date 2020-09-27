@@ -15,7 +15,8 @@ git:
 
 before_script:
     - npm install
-    - npm run serve
+    - npm install pm2@latest -g
+    - pm2 start ecosystem.js
 
 script:
     - npm test
