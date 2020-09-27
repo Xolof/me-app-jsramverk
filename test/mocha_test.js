@@ -15,8 +15,10 @@ let browser;
 // Test suite
 test.describe("me-app", function() {
 
+    this.timeout(20000);
+
     test.beforeEach(function(done) {
-        this.timeout(20000);
+        // this.timeout(20000);
 
         const screen = { width: 1920, height: 1080 };
 
