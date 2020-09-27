@@ -27,7 +27,7 @@ test.describe("me-app", function() {
             .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
             .build();
 
-        // browser.get("http://localhost:8080");
+        browser.get("http://localhost:8080");
         done();
     });
 
