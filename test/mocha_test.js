@@ -22,7 +22,6 @@ test.describe("me-app", function() {
         // browser = new webdriver.Builder().
         // withCapabilities(webdriver.Capabilities.firefox()).build();
 
-
         // Alternative 2.
         var options = new firefox.Options();
         options.addArguments("-headless");
