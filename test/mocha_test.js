@@ -5,10 +5,12 @@
 
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
-const webdriver = require("selenium-webdriver");
-const By = webdriver.By;
 
-const firefox = require('selenium-webdriver/firefox');
+var webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until;
+
+var firefox = require('selenium-webdriver/firefox');
 
 let browser;
 
@@ -20,11 +22,12 @@ test.describe("me-app", function() {
     test.beforeEach(function(done) {
         this.timeout(20000);
 
-        const screen = { width: 1920, height: 1080 };
+        var options = new firefox.Options();
+        options.addArguments("-headless");
 
         browser = new webdriver.Builder()
             .forBrowser('firefox')
-            .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
+            .setFirefoxOptions(options)
             .build();
 
         browser.get("http://localhost:8080");
