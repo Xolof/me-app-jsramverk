@@ -13,6 +13,12 @@ import mainNav from "./components/mainNav";
 import reports from "./components/Reports";
 import presentation from "./components/presentation";
 
+// Mock API
+import { makeServer } from "./server"
+if (process.env.NODE_ENV === "development") {
+  makeServer()
+}
+
 Vue.config.productionTip = false;
 
 const api = "https://me-api.oljo.me";
