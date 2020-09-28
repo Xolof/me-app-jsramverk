@@ -95,8 +95,6 @@ test.describe("me-app", function() {
     });
 
     // Try to log in.
-    // TODO: A better solution would be to mock a database
-    // for testing so as not to affect the production db.
     test.it("Test log in", function(done) {
         goToNavLink("Logga in");
 
