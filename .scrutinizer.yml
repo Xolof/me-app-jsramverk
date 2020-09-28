@@ -4,10 +4,10 @@ build:
       MOZ_HEADLESS: 1
   nodes:
     coverage:
+      - command: npm install pm2@latest -g
+      - command: pm2 start ecosystem.config.js
       tests:
         override:
-          - command: npm install pm2@latest -g
-          - command: pm2 start ecosystem.config.js
           - command: npm test
             coverage:
               file: coverage/clover.xml
