@@ -49,34 +49,6 @@ test.describe("me-app", function() {
         });
     }
 
-    function assertH1(target) {
-        browser
-        .findElement(By.css("h1"))
-        .then(function(element) {
-            element.getText().then(function(text) {
-                assert.equal(text, target);
-            });
-        });
-    }
-
-    // Test case
-    // it eller test.it
-    it("Test index", function(done) {
-        this.timeout(20000);
-
-        browser.getTitle().then(function(title) {
-            assert.equal(title, "me-app");
-        })
-        // .then(done, done);
-        // .catch(done);
-
-        // matchUrl("/#/");
-        //
-        // browser.findElement(By.className("me-img"));
-
-        done();
-    });
-
     test.it("Test go to Redovisning", function(done) {
         goToNavLink("Redovisning");
 
