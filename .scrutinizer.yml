@@ -1,7 +1,7 @@
 build:
   environment:
     variables:
-      MOZ_HEADLESS: 1
+      MOZ_HEADLESS: "1"
   nodes:
     coverage:
       tests:
