@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Presentation from '../views/Presentation.vue'
 import NotFound from "../views/NotFound.vue"
 
+import VueSocketIo from 'vue-socket.io';
+import chatStore from '../store/chat.js';
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -23,6 +26,28 @@ Vue.use(VueRouter)
         path: "/register",
         name: "Registrera",
         component: () => import("../views/Register.vue")
+    },
+    {
+        path: "/chat",
+        name: "Chatt",
+        component: () => import("../views/Chat.vue"),
+        beforeEnter: async (to, from, next) => {
+            await Vue.nextTick()
+            if (!router.app.chatNick) {
+                next("/chat-sign-in");
+                return
+            }
+
+            if (!Vue.prototype.$socket) {
+                Vue.use(VueSocketIo, "https://socket-server.oljo.me", chatStore);
+            }
+            next();
+        }
+    },
+    {
+        path: "/chat-sign-in",
+        name: "Anslut till chatten",
+        component: () => import("../views/ChatSignIn.vue")
     },
     {
         path: "/login",

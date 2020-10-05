@@ -21,7 +21,27 @@
   color: #2c3e50;
   max-width: 760px;
   margin: 0 auto;
-  box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h1, h2, h3, a, p, pre {
+    margin: 0.2rem 0 1rem;
+}
+
+h1, h2, h3 {
+    margin-top: 1.2rem;
+}
+
+pre {
+    margin-top: 0.4rem;
+}
+
+.markdown-body {
+    padding: 0 0.6em;
 }
 
 #nav {
@@ -138,14 +158,16 @@ code {
 }
 
 .register-form *,
-.login-form * {
+.login-form *,
+.chat-sign-in-form * {
     width: 80%;
     display: block;
     margin: 0 auto;
 }
 
 .register-form input,
-.login-form input {
+.login-form input,
+.chat-sign-in-form input {
     margin-bottom: 1.4em;
     border: 1px solid #ccc;
     text-align: center;
@@ -154,12 +176,14 @@ code {
 }
 
 .register-form input:focus,
-.login-form input:focus {
+.login-form input:focus,
+.chat-sign-in-form input:focus {
     border: 2px solid blue;
 }
 
 .register-form input[type="submit"],
-.login-form input[type="submit"]
+.login-form input[type="submit"],
+.chat-sign-in-form input[type="submit"]
  {
     background: #4bcf88;
     cursor: pointer;
@@ -167,7 +191,8 @@ code {
 }
 
 .register-form input[type="submit"]:hover,
-.login-form input[type="submit"]:hover {
+.login-form input[type="submit"]:hover,
+.chat-sign-in-form input[type="submit"]:hover {
     background: #97e0f1;
     border: 1px solid #000;
 }
@@ -198,6 +223,43 @@ code {
     min-height: 150px;
     max-height: 400px;
     font-size: 1.2em;
+}
+
+.all-messages {
+    width: 90%;
+    height: 30vh;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 auto 2rem;
+    overflow-y: scroll;
+}
+
+.all-messages p {
+    margin: 0 auto 0;
+    padding: 0.6em 0.4em 1em;
+    text-align: left;
+}
+
+.all-messages p:nth-child(2n) {
+    background-color: #c3f1d1;
+}
+
+#new-message {
+    width: 90%;
+}
+
+.messageInfo {
+    display: block;
+    color: #134670;
+}
+
+.messageMessage {
+    display:block;
+    margin-top: 0.5em;
+}
+
+.messageTime {
+    float: right;
 }
 
 </style>

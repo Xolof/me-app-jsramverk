@@ -7,6 +7,7 @@ const statusBar = Vue.component("main-nav", {
       <router-link to="/">Hem</router-link>
       <router-link to="/reports">Redovisning</router-link>
       <router-link to="/register">Registrera</router-link>
+      <router-link to="chat">Chatt</router-link>
       <router-link v-if="!this.$root.$data.loggedIn" to="/login">Logga in</router-link>
       <a href="#" v-else @click="logOut">Logga ut</a>
     </div>
