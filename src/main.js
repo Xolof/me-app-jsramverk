@@ -15,7 +15,7 @@ import chatSignIn from "./components/chatSignIn";
 
 const api = "https://me-api.oljo.me";
 
-Mock API
+// Mock API
 import { makeServer } from "./server"
 if (process.env.NODE_ENV === "development") {
     makeServer()
