@@ -15,7 +15,7 @@ import chatSignIn from "./components/chatSignIn";
 
 const api = "https://me-api.oljo.me";
 
-// Mock API
+Mock API
 import { makeServer } from "./server"
 if (process.env.NODE_ENV === "development") {
     makeServer()
@@ -44,6 +44,7 @@ new Vue({
             user: "Kjell",
             chatNick: false,
             chatRegistered: false,
+            chatLoaded: false,
         };
     },
     methods: {
@@ -63,7 +64,10 @@ new Vue({
         },
         registerChat() {
             this.chatRegistered = true;
-        }
+        },
+        setChatLoaded() {
+            this.chatLoaded = true;
+        },
     },
     mounted() {
         eventBus.$on("log-in", (data) => {
@@ -78,7 +82,10 @@ new Vue({
         });
         eventBus.$on("register-chat", () => {
             this.registerChat();
-        })
+        });
+        eventBus.$on("chat-loaded", () => {
+            this.setChatLoaded();
+        });
     },
     render: h => h(App)
 }).$mount('#app');

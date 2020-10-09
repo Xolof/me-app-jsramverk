@@ -39,7 +39,11 @@ Vue.use(VueRouter)
             }
 
             if (!Vue.prototype.$socket) {
-                Vue.use(VueSocketIo, "https://socket-server.oljo.me", chatStore);
+                let url = "https://socket-server.oljo.me";
+                if (process.env.NODE_ENV === "development") {
+                    url = "http://localhost:8300";
+                }
+                Vue.use(VueSocketIo, url, chatStore);
             }
             next();
         }

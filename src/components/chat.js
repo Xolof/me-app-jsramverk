@@ -84,6 +84,20 @@ const chat = Vue.component("chat", {
     },
     mounted() {
         this.focusInput();
+    },
+    beforeCreate() {
+        if (!this.$root.chatLoaded) {
+            let url = "https://socket-server.oljo.me";
+            if (process.env.NODE_ENV === "development") {
+                url = "http://localhost:8300";
+            }
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                chatStore.commit("concatMessages", data);
+                eventBus.$emit("chat-loaded");
+            });
+        }
     }
 });
 

@@ -29,5 +29,8 @@ export default new Vuex.Store({
     addMessage(state, message) {
         state.messagesReceived.push(message);
     },
+    concatMessages(state, oldMessages) {
+        state.messagesReceived = oldMessages.concat(state.messagesReceived);
+    }
   },
 });
